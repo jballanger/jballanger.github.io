@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Julien Ballanger</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+  <style type="text/css">
+    body {
+      background-color: #fafbfc;
+      font-family: 'Open Sans', sans-serif;
+    }
+    h1 {
+      letter-spacing: 7px;
+      text-transform: lowercase;
+    }
+    a {
+      text-decoration: none;
+      color: DodgerBlue;
+    }
+    span {
+      display: inline-block;
+    }
+    .content {
+      text-align: center;
+    }
+    .spin1 {
+      -webkit-animation: spin1 1s 1;
+      -moz-animation: spin1 1s 1;
+      -ms-animation: spin1 1s 1;
+      animation: spin1 1s 1;
+    }
+    .spin2 {
+      -webkit-animation: spin2 1s 1;
+      -moz-animation: spin2 1s 1;
+      -ms-animation: spin2 1s 1;
+      animation: spin2 1s 1;
+    }
+    @-ms-keyframes spin1 { from { -ms-transform: rotate(0deg); } to { -ms-transform: rotate(360deg); } }
+    @-moz-keyframes spin1 { from { -moz-transform: rotate(0deg); } to { -moz-transform: rotate(360deg); } }
+    @-webkit-keyframes spin1 { from { -webkit-transform: rotate(0deg); } to { -webkit-transform: rotate(360deg); } }
+    @keyframes spin1 { from { transform:rotate(0deg); } to { transform:rotate(360deg); } }
+    @-ms-keyframes spin2 { from { -ms-transform: rotate(360deg); } to { -ms-transform: rotate(0deg); } }
+    @-moz-keyframes spin2 { from { -moz-transform: rotate(360deg); } to { -moz-transform: rotate(0deg); } }
+    @-webkit-keyframes spin2 { from { -webkit-transform: rotate(360deg); } to { -webkit-transform: rotate(0deg); } }
+    @keyframes spin2 { from { transform:rotate(360deg); } to { transform:rotate(0deg); } }
+  </style>
+</head>
+<body>
+  <div class="content">
+    <h1>Julien Ballanger</h1>
+    <p>
+      <a href="https://github.com/jballanger" target="_blank">Github</a>
+    </p>
+  </div>
+  <script type="text/javascript">
+    var m = document.getElementsByTagName('h1')[0];
+    var c = 1;
+    var s = '';
+    var n = 0;
+    function spin() {
+      if (!n) n = m.getElementsByTagName('span');
+      for (var i = 0; i < n.length; i += 1) {
+        n[i].classList.remove('spin1', 'spin2');
+        n[i].offsetWidth;
+        var u = 'spin'+Math.round(Math.random()*(2-1)+1);
+        n[i].classList.add(u);
+      }
+    }
+    document.addEventListener('mousemove', function(e) {
+      if (c) return;
+      var a = 0;
+      var r = e.clientX;
+      var g = (e.clientX > e.clientY) ? (e.clientX - e.clientY) : (e.clientY - e.clientX);
+      var b = e.clientY;
+      while (r > 255 || g > 255 || b > 255) {
+        if (r > 255) {
+          r -= 255;
+        }
+        if (g > 255) {
+          g -= 255;
+        }
+        if (b > 255) {
+          b -= 255;
+        }
+      }
+      m.style.color = 'rgb('+r+','+g+','+b+')';
+    });
+    document.addEventListener('click', function() { c = !c; m.style.letterSpacing = Math.random()*(77-7)+7+'px'; spin(); });
+    for (var i = 0; i < m.innerHTML.length; i += 1) {
+      var l = m.innerHTML.charAt(i);
+      l = l != ' ' ? l : '&nbsp;';
+      s += '<span>'+l+'</span>';
+    }
+    m.innerHTML = s;
+  </script>
+</body>
+</html>
