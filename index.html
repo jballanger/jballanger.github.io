@@ -86,7 +86,7 @@
       }
       m.style.color = 'rgb('+r+','+g+','+b+')';
     });
-    document.addEventListener('click', function() { c = !c; m.style.letterSpacing = Math.random()*(77-7)+7+'px'; spin(); });
+    document.addEventListener('click', function() { c = !c; m.style.letterSpacing = Math.random()*((window.innerWidth/32)-1)+1+'px'; spin(); });
     for (var i = 0; i < m.innerHTML.length; i += 1) {
       var l = m.innerHTML.charAt(i);
       l = l != ' ' ? l : '&nbsp;';
